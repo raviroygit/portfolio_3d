@@ -15,14 +15,14 @@ import {
   git,
   figma,
   docker,
-  meta,
-  starbucks,
-  tesla,
-  shopify,
-  carrent,
-  jobit,
-  tripguide,
+  dipole,
+  ezycerts,
+  hihellohr,
+  parking_bucket,
   threejs,
+  live,
+  portfolio1,
+  portfolio2,
 } from "../assets";
 
 export const navLinks = [
@@ -54,7 +54,7 @@ const services = [
     icon: backend,
   },
   {
-    title: "Content Creator",
+    title: "Android, iOS",
     icon: creator,
   },
 ];
@@ -116,57 +116,34 @@ const technologies = [
 
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
-    icon: starbucks,
-    iconBg: "#383E56",
-    date: "March 2020 - April 2021",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "React Native Developer",
-    company_name: "Tesla",
-    icon: tesla,
-    iconBg: "#E6DEDD",
-    date: "Jan 2021 - Feb 2022",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Web Developer",
-    company_name: "Shopify",
-    icon: shopify,
-    iconBg: "#383E56",
-    date: "Jan 2022 - Jan 2023",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
     title: "Full stack Developer",
-    company_name: "Meta",
-    icon: meta,
+    company_name: "Dipole tech innovation OPC pvt. ltd.",
+    icon: dipole,
     iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
+    date: "August 2022 - Present",
     points: [
       "Developing and maintaining web applications using React.js and other related technologies.",
       "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
       "Implementing responsive design and ensuring cross-browser compatibility.",
       "Participating in code reviews and providing constructive feedback to other developers.",
     ],
+    company_link: "https://dipoletechi.com/"
   },
+  {
+    title: "Mern Stack Developer",
+    company_name: "Ezycerts Solution pvt. ltd.",
+    icon: ezycerts,
+    iconBg: "#383E56",
+    date: "March 2021 - august 2022",
+    points: [
+      "Developing and maintaining web applications using React.js and other related technologies.",
+      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
+      "Implementing responsive design and ensuring cross-browser compatibility.",
+      "Participating in code reviews and providing constructive feedback to other developers.",
+    ],
+    company_link: "https://www.ezycerts.com/"
+  }
+
 ];
 
 const testimonials = [
@@ -198,58 +175,16 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Hihellohr",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "Best HRMS and Payroll Software: hihellohr is a modern HR performance attendance, leave, staff document management software systems for smart workplace.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
-        color: "green-text-gradient",
-      },
-      {
-        name: "tailwind",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: carrent,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "Job IT",
-    description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "restapi",
-        color: "green-text-gradient",
-      },
-      {
-        name: "scss",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: jobit,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "Trip Guide",
-    description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-    tags: [
-      {
-        name: "nextjs",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "supabase",
+        name: "cordova",
         color: "green-text-gradient",
       },
       {
@@ -257,7 +192,78 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: tripguide,
+    image: hihellohr,
+    live_icon:live,
+    live_link: "https://play.google.com/store/apps/details?id=com.hihellohr.app",
+    source_code_link: "https://github.com/",
+  },
+  {
+    name: "Parking Bucket",
+    description:
+      "You are going out of station or going to watch a movie, do not waste your time and fuel in search for parking. Just book parking before you arrive and enjoy your trip.",
+    tags: [
+      {
+        name: "Angular",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "cordova",
+        color: "green-text-gradient",
+      },
+      {
+        name: "bootstrap",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: parking_bucket,
+    live_icon:live,
+    live_link: "https://play.google.com/store/apps/details?id=com.parkingbucket.dev",
+    source_code_link: "https://github.com/",
+  },
+  {
+    name: "Portfolio 1",
+    description:
+      "You are going out of station or going to watch a movie, do not waste your time and fuel in search for parking. Just book parking before you arrive and enjoy your trip.",
+    tags: [
+      {
+        name: "Angular",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "cordova",
+        color: "green-text-gradient",
+      },
+      {
+        name: "bootstrap",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: portfolio1,
+    live_icon:live,
+    live_link: "https://portfolio1.codelength.net/",
+    source_code_link: "https://github.com/",
+  },
+  {
+    name: "Portfolio 2",
+    description:
+      "You are going out of station or going to watch a movie, do not waste your time and fuel in search for parking. Just book parking before you arrive and enjoy your trip.",
+    tags: [
+      {
+        name: "Angular",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "cordova",
+        color: "green-text-gradient",
+      },
+      {
+        name: "bootstrap",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: portfolio2,
+    live_icon:live,
+    live_link: "https://raviroy.codelength.net/",
     source_code_link: "https://github.com/",
   },
 ];

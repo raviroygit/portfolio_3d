@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import logo from "./logo.png";
 import backend from "./backend.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
@@ -6,6 +6,7 @@ import web from "./web.png";
 import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
+import live from "./live.png";
 
 import css from "./tech/css.png";
 import docker from "./tech/docker.png";
@@ -21,14 +22,13 @@ import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
 
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
-import starbucks from "./company/starbucks.png";
-import tesla from "./company/tesla.png";
+import dipole from "./company/dipole.png";
+import ezycerts from "./company/ezycerts.jpg";
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
+import hihellohr from "./hihellohr.webp";
+import parking_bucket from "./parking_bucket.png";
+import portfolio1 from "./portfolio1.png";
+import portfolio2 from "./portfolio2.png";
 
 export {
   logo,
@@ -52,11 +52,11 @@ export {
   tailwind,
   typescript,
   threejs,
-  meta,
-  shopify,
-  starbucks,
-  tesla,
-  carrent,
-  jobit,
-  tripguide,
+  dipole,
+  ezycerts,
+  hihellohr,
+  parking_bucket,
+  portfolio1,
+  portfolio2,
+  live
 };

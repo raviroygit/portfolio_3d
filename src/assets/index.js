@@ -30,6 +30,11 @@ import parking_bucket from "./parking_bucket.png";
 import portfolio1 from "./portfolio1.png";
 import portfolio2 from "./portfolio2.png";
 
+import ravi from "./testimonial/ravi.png";
+import sonali from "./testimonial/sonali.jpeg";
+import maneesh from "./testimonial/maneesh.jpeg";
+
+
 export {
   logo,
   backend,
@@ -58,5 +63,8 @@ export {
   parking_bucket,
   portfolio1,
   portfolio2,
-  live
+  live,
+  ravi,
+  sonali,
+  maneesh
 };

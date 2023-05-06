@@ -23,6 +23,9 @@ import {
   live,
   portfolio1,
   portfolio2,
+  ravi,
+  sonali,
+  maneesh
 } from "../assets";
 
 export const navLinks = [
@@ -149,27 +152,27 @@ const experiences = [
 const testimonials = [
   {
     testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
+      "I thought it was impossible to make a website as beautiful as our product, but Ravi Roy proved me wrong.",
+    name: "Maneesh Negi",
+    designation: "Sr. Dot net developer",
+    company: "Dipole tech innovatio OPC pvt. ltd.",
+    image: ravi,
   },
   {
     testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
+      "I've never met a web developer who truly cares about their clients' success like Ravi Roy does.",
+    name: "Sonali Suman",
+    designation: "Sr. PHP developer",
+    company: "Dipole tech innovatio OPC pvt. ltd.",
+    image: sonali,
   },
   {
     testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+      "After Ravi Roy optimized our website, our traffic increased by 50%. We can't thank them enough!",
+    name: "Ravi Sharma",
+    designation: "Software Engineer",
+    company: "Kiwi tech",
+    image: maneesh
   },
 ];
 
@@ -193,7 +196,7 @@ const projects = [
       },
     ],
     image: hihellohr,
-    live_icon:live,
+    live_icon: live,
     live_link: "https://play.google.com/store/apps/details?id=com.hihellohr.app",
     source_code_link: "https://github.com/",
   },
@@ -216,7 +219,7 @@ const projects = [
       },
     ],
     image: parking_bucket,
-    live_icon:live,
+    live_icon: live,
     live_link: "https://play.google.com/store/apps/details?id=com.parkingbucket.dev",
     source_code_link: "https://github.com/",
   },
@@ -239,7 +242,7 @@ const projects = [
       },
     ],
     image: portfolio1,
-    live_icon:live,
+    live_icon: live,
     live_link: "https://portfolio1.codelength.net/",
     source_code_link: "https://github.com/",
   },
@@ -262,7 +265,7 @@ const projects = [
       },
     ],
     image: portfolio2,
-    live_icon:live,
+    live_icon: live,
     live_link: "https://raviroy.codelength.net/",
     source_code_link: "https://github.com/",
   },

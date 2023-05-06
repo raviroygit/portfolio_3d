@@ -156,7 +156,7 @@ const testimonials = [
     name: "Maneesh Negi",
     designation: "Sr. Dot net developer",
     company: "Dipole tech innovatio OPC pvt. ltd.",
-    image: ravi,
+    image: maneesh,
   },
   {
     testimonial:
@@ -172,7 +172,7 @@ const testimonials = [
     name: "Ravi Sharma",
     designation: "Software Engineer",
     company: "Kiwi tech",
-    image: maneesh
+    image: ravi
   },
 ];
 

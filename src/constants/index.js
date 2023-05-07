@@ -229,11 +229,11 @@ const projects = [
       "You are going out of station or going to watch a movie, do not waste your time and fuel in search for parking. Just book parking before you arrive and enjoy your trip.",
     tags: [
       {
-        name: "Angular",
+        name: "ReactJS",
         color: "blue-text-gradient",
       },
       {
-        name: "cordova",
+        name: "Styled component",
         color: "green-text-gradient",
       },
       {
@@ -252,15 +252,15 @@ const projects = [
       "You are going out of station or going to watch a movie, do not waste your time and fuel in search for parking. Just book parking before you arrive and enjoy your trip.",
     tags: [
       {
-        name: "Angular",
+        name: "ReactJs",
         color: "blue-text-gradient",
       },
       {
-        name: "cordova",
+        name: "framer-motion",
         color: "green-text-gradient",
       },
       {
-        name: "bootstrap",
+        name: "react-bootstrap",
         color: "pink-text-gradient",
       },
     ],

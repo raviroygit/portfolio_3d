@@ -14,6 +14,7 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [errMsg, setErrMsg] = useState('');
 
   const [loading, setLoading] = useState(false);
 
@@ -29,6 +30,18 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!form.name) {
+      setErrMsg('Please enter your name!');
+      return;
+    }
+    if (!form.email) {
+      setErrMsg('Please enter your email!');
+      return;
+    }
+    if (!form.message) {
+      setErrMsg('Please enter your message!');
+      return;
+    }
     setLoading(true);
 
     emailjs
@@ -54,11 +67,12 @@ const Contact = () => {
             email: "",
             message: "",
           });
+          setErrMsg('');
         },
         (error) => {
           setLoading(false);
           console.error(error);
-
+          setErrMsg('');
           alert("Ahh, something went wrong. Please try again.");
         }
       );
@@ -113,7 +127,7 @@ const Contact = () => {
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
-
+          <span className="text-danger">{errMsg}</span>
           <button
             type='submit'
             className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'

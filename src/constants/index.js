@@ -198,7 +198,7 @@ const projects = [
     image: hihellohr,
     live_icon: live,
     live_link: "https://play.google.com/store/apps/details?id=com.hihellohr.app",
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/raviroygit",
   },
   {
     name: "Parking Bucket",
@@ -221,7 +221,7 @@ const projects = [
     image: parking_bucket,
     live_icon: live,
     live_link: "https://play.google.com/store/apps/details?id=com.parkingbucket.dev",
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/raviroygit",
   },
   {
     name: "Portfolio 1",
@@ -244,7 +244,7 @@ const projects = [
     image: portfolio1,
     live_icon: live,
     live_link: "https://portfolio1.codelength.net/",
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/raviroygit",
   },
   {
     name: "Portfolio 2",
@@ -267,7 +267,7 @@ const projects = [
     image: portfolio2,
     live_icon: live,
     live_link: "https://raviroy.codelength.net/",
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/raviroygit",
   },
 ];
 

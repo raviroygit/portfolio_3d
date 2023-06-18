@@ -243,7 +243,7 @@ const projects = [
     ],
     image: portfolio1,
     live_icon: live,
-    live_link: "https://portfolio1.codelength.net/",
+    live_link: "https://portfolio.codelength.net/",
     source_code_link: "https://github.com/raviroygit",
   },
   {

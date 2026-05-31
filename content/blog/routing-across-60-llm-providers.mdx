@@ -1,0 +1,63 @@
+---
+title: "Routing across 60+ LLM providers behind one API"
+description: "How to design a provider-agnostic AI orchestration layer with fallback and cost-aware model selection — so your product is never locked to a single vendor."
+date: "2026-05-20"
+category: "AI Infrastructure"
+tags: ["LLM", "Orchestration", "System Design", "AI Infrastructure"]
+---
+
+Most AI products start the same way: a single call to a single provider's SDK,
+hard-coded model name, key in an env var. It ships fast. It also quietly becomes
+the most fragile part of the system — one outage, price change, or deprecation
+away from a production incident.
+
+The fix is an **orchestration layer**: a thin, provider-agnostic interface that
+every part of your product calls instead of talking to providers directly.
+
+## The core idea
+
+Your application should never know which provider answered its request. It asks
+for a *capability* ("chat completion, this quality tier, these constraints") and
+the orchestration layer decides *how* to fulfill it.
+
+```ts
+// the app only ever sees this
+const result = await ai.complete({
+  task: "summarize",
+  quality: "fast",
+  messages,
+});
+```
+
+Behind that call sits a router that maps the request to a concrete provider +
+model, with fallback if the first choice fails.
+
+## Three responsibilities
+
+1. **Normalization** — every provider has a slightly different request/response
+   shape, streaming protocol, and error taxonomy. The layer normalizes all of
+   them into one internal contract.
+2. **Selection** — choosing a model is a policy decision: cost, latency,
+   capability, and current availability. Keep this in a routing table, not in
+   application code.
+3. **Fallback** — when the chosen provider errors or times out, fail over to the
+   next candidate transparently. The caller never sees it.
+
+## Cost-aware selection
+
+Once selection is centralized, cost optimization becomes a config change rather
+than a refactor. A cheap model handles the 80% of requests that don't need
+frontier capability; the expensive model is reserved for the cases that do.
+
+> The win isn't any single clever trick — it's that *every* request now flows
+> through one place you can observe, route, and change without touching product
+> code.
+
+## What this unlocks
+
+- **No vendor lock-in.** Swapping or adding a provider is a routing-table entry.
+- **Resilience.** Provider outages degrade gracefully instead of taking you down.
+- **Observability.** One choke point to measure cost, latency, and error rates.
+
+This is the layer underneath everything else I build — agents, voice systems,
+and multi-tenant platforms all call the same orchestration interface.

@@ -1,0 +1,58 @@
+---
+title: "Multi-tenant from day one"
+description: "Why tenant isolation belongs in your data model from the first commit — and how organization-based auth, RBAC, and a secret vault fit together in a SaaS platform."
+date: "2026-05-10"
+category: "Multi-Tenant SaaS"
+tags: ["Multi-Tenant", "SaaS", "RBAC", "System Design", "Auth"]
+---
+
+The most expensive mistake in SaaS architecture is treating multi-tenancy as a
+feature you'll add later. By the time "later" arrives, tenant boundaries are
+smeared across the codebase and every query is a potential data leak.
+
+Build it in from the first commit. It's cheaper than you think, and it changes
+how everything else is designed.
+
+## Organizations are the root, not users
+
+The instinct is to model `User` first and bolt organizations on top. Invert it:
+the **organization** is the root entity. Users belong to orgs; data belongs to
+orgs; permissions scope from the org down.
+
+```text
+Organization
+  └── Members (User + Role)
+        └── Permissions (resource-scoped)
+  └── Resources (everything is tagged with org_id)
+```
+
+Once every row carries an `org_id` and every query is scoped to it, isolation is
+the default rather than something you remember to add.
+
+## Isolation has levels
+
+- **Row-level** — `org_id` on every table + enforced query scoping. Cheapest,
+  good enough for most.
+- **Connection-level** — separate schemas or databases per tenant for stronger
+  isolation and noisy-neighbor protection.
+
+Pick per workload. The key is that the *choice* lives in one data-access layer,
+not scattered across controllers.
+
+## RBAC: org / role / resource
+
+Permissions aren't global — they're scoped. A clean model answers one question:
+*can this **member** perform this **action** on this **resource** within this
+**org**?* Default to least privilege and make the check a single call.
+
+## Secrets don't belong in product code
+
+Tenants bring their own API keys, provider credentials, and connection strings.
+Those go in an **encrypted secret vault**, fetched at use, never logged, never
+handled by feature code. Build it once as a platform service and let every
+product delegate to it.
+
+> Solve identity, isolation, and secrets *once*, as a platform other products
+> delegate to. Then every new product is multi-tenant on day one — for free.
+
+That's the difference between shipping an app and shipping a platform.

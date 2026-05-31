@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   AI INFRASTRUCTURE CONTROL-ROOM — design tokens
+   Dark-mode-first. Near-black cool-tinted surfaces, warm paper-white text,
+   a single electric-lime "signal" accent used sparingly. Tailwind v4 @theme:
+   --color-* / --font-* / --text-* / --shadow-* / --breakpoint-* auto-generate
+   utilities (bg-bg, text-fg, font-display, text-display-lg, shadow-card, ...).
+   ============================================================================ */
+
+@theme {
+  /* surfaces — cool near-black, layered */
+  --color-bg: oklch(0.155 0.012 264);
+  --color-bg-2: oklch(0.185 0.014 264);
+  --color-surface: oklch(0.215 0.016 264);
+  --color-surface-2: oklch(0.255 0.018 264);
+  --color-border: oklch(0.32 0.018 264 / 0.7);
+  --color-border-strong: oklch(0.42 0.02 264);
+
+  /* foreground — warm paper white → muted */
+  --color-fg: oklch(0.965 0.006 95);
+  --color-fg-muted: oklch(0.74 0.012 264);
+  --color-fg-subtle: oklch(0.56 0.014 264);
+
+  /* signal accent — electric lime (status LED / cursor energy) */
+  --color-signal: oklch(0.86 0.2 128);
+  --color-signal-dim: oklch(0.7 0.16 128);
+  --color-signal-glow: oklch(0.86 0.2 128 / 0.18);
+
+  /* secondary cool accent for category coding (used very sparingly) */
+  --color-cyan: oklch(0.82 0.12 210);
+  --color-danger: oklch(0.68 0.2 25);
+
+  /* fonts (wired to next/font CSS vars) */
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+
+  /* fluid type scale */
+  --text-display-lg: clamp(2.85rem, 7vw, 6rem);
+  --text-display-lg--line-height: 0.98;
+  --text-display-lg--letter-spacing: -0.035em;
+  --text-display: clamp(2rem, 4.5vw, 3.6rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.025em;
+  --text-h2: clamp(1.6rem, 3vw, 2.5rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.02em;
+  --text-eyebrow: 0.78rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.18em;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.7;
+
+  /* atmosphere */
+  --shadow-card: 0 1px 0 0 oklch(1 0 0 / 0.04) inset,
+    0 30px 70px -32px oklch(0 0 0 / 0.7);
+  --shadow-glow: 0 0 80px -16px var(--color-signal-glow);
+
+  --radius-card: 0.875rem;
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+
+  --breakpoint-xs: 28rem;
+}
+
+/* ---------------------------------------------------------------- base ---- */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    /* control-room atmosphere: fine grid + faint signal vignette */
+    background-image: linear-gradient(
+        to right,
+        oklch(1 0 0 / 0.022) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, oklch(1 0 0 / 0.022) 1px, transparent 1px),
+      radial-gradient(
+        120% 80% at 50% -10%,
+        var(--color-signal-glow),
+        transparent 60%
+      );
+    background-size: 64px 64px, 64px 64px, 100% 100%;
+    background-attachment: fixed, fixed, fixed;
+  }
+
+  /* fixed-navbar anchor offset */
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ----------------------------------------------------------- utilities ---- */
+
+/* gradient text (v4 has no gradient-text namespace) */
+@utility text-signal-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-fg) 30%,
+    var(--color-signal) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* hairline grid panel backdrop used on cards/sections */
+@utility grid-panel {
+  background-image: linear-gradient(
+      to right,
+      oklch(1 0 0 / 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, oklch(1 0 0 / 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* soft radial spotlight behind hero / sections */
+@utility spotlight {
+  background-image: radial-gradient(
+    60% 50% at 50% 40%,
+    var(--color-signal-glow),
+    transparent 70%
+  );
+}
+
+/* ---------------------------------------------------------- animations ---- */
+@keyframes pulse-led {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 var(--color-signal-glow);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-led {
+  animation: pulse-led 2.4s var(--ease-fluid) infinite;
+}
+
+@utility animate-marquee {
+  animation: marquee 36s linear infinite;
+}
+
+/* cursor-following border ring — a 1.5px gradient frame, masked so only the
+   border shows. Pair with a radial-gradient background tinted by --glow. */
+@utility glow-ring {
+  padding: 1.5px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}

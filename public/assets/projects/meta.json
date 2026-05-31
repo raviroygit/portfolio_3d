@@ -1,0 +1,167 @@
+[
+  {
+    "slug": "nextgen-ai-dev",
+    "url": "https://nxtgenaidev.com",
+    "finalUrl": "https://www.nxtgenaidev.com/",
+    "title": "NextGen AI DEV — Products + AI Platform",
+    "description": "Builders of ClipCam, EvenlySplit, Echo AI and Elevence AI — plus a unified AI platform with 20+ models from 10+ providers via one API. Products and services for the next generation of AI.",
+    "themeColor": "#ffffff",
+    "dominant": "#080808",
+    "image": "/assets/projects/nextgen-ai-dev.webp",
+    "dims": {
+      "width": 1280,
+      "height": 800
+    },
+    "logo": "/assets/projects/nextgen-ai-dev-logo.png"
+  },
+  {
+    "slug": "elevence-ai",
+    "url": "https://www.elevence.ai",
+    "finalUrl": "https://www.elevence.ai/",
+    "title": "One studio for GPT-5, Claude, Gemini & 60+ AI models — Elevence AI",
+    "description": "Chat with GPT-5, Claude, Gemini, Llama and 60+ AI models in one studio. Generate images, video, and audio. OpenAI-compatible API with pay-as-you-go credits — no subscription.",
+    "themeColor": "#0C0A09",
+    "dominant": "#0C0A09",
+    "image": "/assets/projects/elevence-ai.webp",
+    "dims": {
+      "width": 1280,
+      "height": 800
+    },
+    "logo": "/assets/projects/elevence-ai-logo.png"
+  },
+  {
+    "slug": "echo-ai",
+    "url": "https://echo-ai.nxtgenaidev.com",
+    "finalUrl": "https://echo-ai.nxtgenaidev.com/",
+    "title": null,
+    "description": null,
+    "themeColor": null,
+    "dominant": "#080808",
+    "image": "/assets/projects/echo-ai.webp",
+    "dims": {
+      "width": 1280,
+      "height": 800
+    },
+    "logo": null
+  },
+  {
+    "slug": "exl-ai-playground",
+    "url": "https://exlaiplayground.com",
+    "finalUrl": "https://exlaiplayground.com/",
+    "title": "EXL AI Playground - Explore AI Models &amp; Tools",
+    "description": "Interactive AI playground for experimenting with language models, image generation, and AI-powered tools. Build, test, and explore AI capabilities in real-time.",
+    "themeColor": null,
+    "dominant": "#f8f8f8",
+    "image": "/assets/projects/exl-ai-playground.webp",
+    "dims": {
+      "width": 1280,
+      "height": 800
+    },
+    "logo": "/assets/projects/exl-ai-playground-logo.png"
+  },
+  {
+    "slug": "voagents-ai",
+    "url": "https://voagents.ai",
+    "finalUrl": "https://voagents.ai/",
+    "title": null,
+    "description": null,
+    "themeColor": null,
+    "dominant": "#080808",
+    "image": "/assets/projects/voagents-ai.webp",
+    "dims": {
+      "width": 1280,
+      "height": 800
+    },
+    "logo": null
+  },
+  {
+    "slug": "clipcam",
+    "url": "https://www.clipcam.app",
+    "finalUrl": "https://www.clipcam.app/",
+    "title": "ClipCam — Record reaction clips, auto-export, share anywhere",
+    "description": "ClipCam is the fastest way to record reactions over your favorite clips. Side-by-side reactions render automatically — one tap to download, one tap to share to YouTube, TikTok, Instagram, and X.",
+    "themeColor": "#8A2BE2",
+    "dominant": "#f8f8f8",
+    "image": "/assets/projects/clipcam.webp",
+    "dims": {
+      "width": 1280,
+      "height": 800
+    },
+    "logo": "/assets/projects/clipcam-logo.png"
+  },
+  {
+    "slug": "fanisin",
+    "url": "https://fanisin.com",
+    "finalUrl": "https://fanisin.com/",
+    "title": "Fanisin",
+    "description": "Connect and interact with AI-powered avatars of real people",
+    "themeColor": "#0B0B1A",
+    "dominant": "#080818",
+    "image": "/assets/projects/fanisin.webp",
+    "dims": {
+      "width": 1280,
+      "height": 800
+    },
+    "logo": "/assets/projects/fanisin-logo.png"
+  },
+  {
+    "slug": "bae-i",
+    "url": "https://bae-i.com",
+    "finalUrl": "https://bae-i.com/",
+    "title": "Bae-i",
+    "description": "Your AI companion awaits",
+    "themeColor": "#0B0B1A",
+    "dominant": "#0B0B1A",
+    "image": "/assets/projects/bae-i.webp",
+    "dims": {
+      "width": 1280,
+      "height": 1280
+    },
+    "logo": "/assets/projects/bae-i-logo.png"
+  },
+  {
+    "slug": "hihellohr",
+    "url": "https://hihellohr.com",
+    "finalUrl": "https://hihellohr.com/",
+    "title": "Best HRMS Software - Hr Smart System | hihellohr",
+    "description": "hihellohr is a HRMS software solutions for your business needs. Manage employee data, payroll, time &amp; attendance tracking. Book Free Demo.",
+    "themeColor": null,
+    "dominant": "#f8f8f8",
+    "image": "/assets/projects/hihellohr.webp",
+    "dims": {
+      "width": 1280,
+      "height": 800
+    },
+    "logo": "/assets/projects/hihellohr-logo.png"
+  },
+  {
+    "slug": "parking-bucket",
+    "url": "https://parkingbucket.com",
+    "finalUrl": "https://parkingbucket.com/",
+    "title": "Car Parking Near Me | Parking Near Me | Parking Bucket",
+    "description": "Are you looking for parking near me? Here on Parking Bucket you can book car parking near me, navigate parking space, review parking space.",
+    "themeColor": null,
+    "dominant": "#282828",
+    "image": "/assets/projects/parking-bucket.webp",
+    "dims": {
+      "width": 1280,
+      "height": 1280
+    },
+    "logo": "/assets/projects/parking-bucket-logo.png"
+  },
+  {
+    "slug": "evenlysplit",
+    "url": "https://play.google.com/store/apps/details?id=com.nxtgenaidev.evenly",
+    "finalUrl": "https://play.google.com/store/apps/details?id=com.nxtgenaidev.evenly",
+    "title": "EvenlySplit - Apps on Google Play",
+    "description": "The smartest way to split expenses with friends, roommates, and groups",
+    "themeColor": null,
+    "dominant": "#f8f8f8",
+    "image": "/assets/projects/evenlysplit.webp",
+    "dims": {
+      "width": 1280,
+      "height": 800
+    },
+    "logo": "/assets/projects/evenlysplit-logo.png"
+  }
+]

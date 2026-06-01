@@ -16,7 +16,7 @@ export function WhatIBuild() {
       <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {capabilities.map((cap, i) => (
           <Reveal key={cap.title} delay={i * 0.05}>
-            <Card className="h-full p-6">
+            <Card interactive className="h-full p-6">
               <h3 className="font-display text-lg font-semibold text-fg">
                 {cap.title}
               </h3>

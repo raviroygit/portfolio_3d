@@ -160,6 +160,14 @@
   background-size: 32px 32px;
 }
 
+/* frosted liquid-glass surface — translucent fill + heavy backdrop blur so the
+   page grid / ambient glows show through. Pair with `border-border`. */
+@utility glass {
+  background-color: oklch(0.21 0.016 264 / 0.4);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+
 /* soft radial spotlight behind hero / sections */
 @utility spotlight {
   background-image: radial-gradient(

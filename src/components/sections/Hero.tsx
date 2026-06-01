@@ -59,7 +59,7 @@ export function Hero() {
               {focus.map((f) => (
                 <li
                   key={f}
-                  className="rounded-full border border-border bg-bg-2/50 px-3 py-1 font-mono text-xs text-fg-muted"
+                  className="rounded-full border border-border glass px-3 py-1 font-mono text-xs text-fg-muted transition-all duration-300 ease-fluid hover:-translate-y-0.5 hover:border-signal/50 hover:text-signal hover:shadow-glow"
                 >
                   {f}
                 </li>

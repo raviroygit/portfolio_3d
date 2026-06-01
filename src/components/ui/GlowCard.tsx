@@ -15,11 +15,15 @@ export function GlowCard({
   className,
   glow = SIGNAL_GLOW,
   interactive = true,
+  surface = true,
 }: {
   children: React.ReactNode;
   className?: string;
   glow?: string;
   interactive?: boolean;
+  /** When false, render only the glow overlays + lift (no glass base / hairline),
+   *  so the card can wrap an already-framed element without a double border. */
+  surface?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -39,17 +43,21 @@ export function GlowCard({
       onMouseMove={live ? onMove : undefined}
       style={{ "--glow": glow } as React.CSSProperties}
       className={cn(
-        "group/glow relative overflow-hidden rounded-card border border-border bg-bg-2/60 shadow-card backdrop-blur-sm",
+        "group/glow relative overflow-hidden rounded-card",
+        surface && "border border-border glass shadow-card",
         live &&
-          "transition-[transform,border-color,box-shadow] duration-300 ease-fluid hover:-translate-y-1 hover:border-transparent hover:shadow-glow",
+          "transition-[transform,border-color,box-shadow] duration-300 ease-fluid hover:-translate-y-1 hover:shadow-glow",
+        live && surface && "hover:border-transparent",
         className,
       )}
     >
       {/* top hairline highlight */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"
-      />
+      {surface ? (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"
+        />
+      ) : null}
 
       {live ? (
         <>

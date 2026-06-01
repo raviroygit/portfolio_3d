@@ -53,26 +53,25 @@ export function FeaturedProducts() {
                     }}
                   />
                   <Link href={`/work/${p.slug}`} aria-label={`${p.name} case study`}>
-                    <BrowserFrame
-                      url={host}
-                      className="transition-transform duration-500 ease-fluid group-hover/shot:-translate-y-1.5"
-                    >
-                      <div className="relative aspect-[16/10] overflow-hidden bg-bg">
-                        {media?.image ? (
-                          <Image
-                            src={media.image}
-                            alt={`${p.name} — live product screenshot`}
-                            fill
-                            sizes="(max-width: 1024px) 100vw, 58vw"
-                            className="object-cover object-top transition-transform duration-700 ease-fluid group-hover/shot:scale-[1.03]"
-                          />
-                        ) : (
-                          <div className="grid h-full place-items-center font-display text-2xl text-fg/70">
-                            {p.name}
-                          </div>
-                        )}
-                      </div>
-                    </BrowserFrame>
+                    <GlowCard surface={false} glow={glow} className="rounded-xl">
+                      <BrowserFrame url={host}>
+                        <div className="relative aspect-[16/10] overflow-hidden bg-bg">
+                          {media?.image ? (
+                            <Image
+                              src={media.image}
+                              alt={`${p.name} — live product screenshot`}
+                              fill
+                              sizes="(max-width: 1024px) 100vw, 58vw"
+                              className="object-cover object-top transition-transform duration-700 ease-fluid group-hover/shot:scale-[1.03]"
+                            />
+                          ) : (
+                            <div className="grid h-full place-items-center font-display text-2xl text-fg/70">
+                              {p.name}
+                            </div>
+                          )}
+                        </div>
+                      </BrowserFrame>
+                    </GlowCard>
                   </Link>
                 </div>
 

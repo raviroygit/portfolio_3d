@@ -70,7 +70,7 @@ export function AiInfrastructure() {
         <div className="grid gap-4 sm:grid-cols-2">
           {layers.map((l, i) => (
             <Reveal key={l.step} delay={i * 0.06}>
-              <Card className="h-full p-6">
+              <Card interactive className="h-full p-6">
                 <span className="font-mono text-xs text-signal-dim">{l.step}</span>
                 <h3 className="mt-3 font-display text-base font-semibold text-fg">
                   {l.title}

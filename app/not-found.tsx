@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MonoLabel } from "@/components/ui/MonoLabel";
+
+export const metadata: Metadata = {
+  title: "404 — Page not found",
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (

@@ -29,7 +29,7 @@ export function ProjectsApp() {
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
                           src={media.image}
-                          alt=""
+                          alt={`${p.name} screenshot`}
                           loading="lazy"
                           className="h-full w-full object-cover object-top"
                         />

@@ -3,8 +3,9 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectCard } from "@/components/work/ProjectCard";
 import { Reveal } from "@/components/motion/Reveal";
-import { getProjectsByGroup, projectGroups } from "@/content/work";
+import { getAllProjects, getProjectsByGroup, projectGroups } from "@/content/work";
 import { buildMetadata } from "@/lib/seo";
+import { itemListSchema, jsonLdScript } from "@/lib/jsonld";
 
 export const metadata: Metadata = buildMetadata({
   title: "Work",
@@ -16,8 +17,21 @@ export const metadata: Metadata = buildMetadata({
 export default function WorkPage() {
   return (
     <main id="main" className="pt-28 pb-24 sm:pt-36">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(
+          itemListSchema({
+            name: "Work & Case Studies",
+            items: getAllProjects().map((p) => ({
+              name: p.name,
+              path: `/work/${p.slug}`,
+            })),
+          }),
+        )}
+      />
       <Container>
         <SectionHeading
+          as="h1"
           eyebrow="work"
           title="AI platforms, products, and systems."
           description="A selection of the AI platforms, SaaS products, and enterprise systems I've built and shipped — with live screenshots from each product."

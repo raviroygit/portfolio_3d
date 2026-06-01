@@ -1,15 +1,39 @@
 import { siteConfig } from "./seo";
+import { experiences } from "@/content/work";
+
+const abs = (path: string) => new URL(path, siteConfig.url).toString();
+
+/** Stable @id for the Person node so other schemas can reference it. */
+const PERSON_ID = `${siteConfig.url}/#person`;
+const personRef = { "@id": PERSON_ID };
 
 /** schema.org Person — sitewide identity. */
 export function personSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": PERSON_ID,
     name: siteConfig.name,
     url: siteConfig.url,
+    image: abs("/assets/logo.png"),
     email: `mailto:${siteConfig.email}`,
     jobTitle: "AI Platform Engineer & Infrastructure Architect",
     description: siteConfig.description,
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "AI Platform Engineer & Infrastructure Architect",
+      description:
+        "Designs and ships production AI platforms, multi-tenant SaaS, AI agents, and the LLM orchestration infrastructure behind them.",
+      skills: [
+        "AI Platform Engineering",
+        "LLM Orchestration",
+        "Multi-Tenant SaaS Architecture",
+        "AI Agents & Voice AI",
+        "RAG & Vector Search",
+        "Authentication, RBAC & SSO",
+        "Full-Stack & Mobile Development",
+      ].join(", "),
+    },
     knowsAbout: [
       "AI Platforms",
       "AI Infrastructure",
@@ -21,6 +45,11 @@ export function personSchema() {
       "RBAC & SSO",
       "System Design",
     ],
+    worksFor: experiences.map((e) => ({
+      "@type": "Organization",
+      name: e.company,
+      ...(e.url ? { url: e.url } : {}),
+    })),
     sameAs: Object.values(siteConfig.social),
   };
 }
@@ -30,9 +59,56 @@ export function websiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteConfig.url}/#website`,
     name: siteConfig.name,
     url: siteConfig.url,
     inLanguage: "en",
+    publisher: personRef,
+  };
+}
+
+/** schema.org ProfilePage — strengthens the home page as the person's profile. */
+export function profilePageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    url: siteConfig.url,
+    name: siteConfig.title,
+    description: siteConfig.description,
+    mainEntity: personRef,
+    inLanguage: "en",
+  };
+}
+
+/** schema.org BreadcrumbList. */
+export function breadcrumbSchema(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: abs(item.path),
+    })),
+  };
+}
+
+/** schema.org ItemList — for listing pages (e.g. /work). */
+export function itemListSchema(input: {
+  name: string;
+  items: { name: string; path: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: input.name,
+    itemListElement: input.items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      url: abs(item.path),
+    })),
   };
 }
 
@@ -44,6 +120,7 @@ export function articleSchema(input: {
   date: string;
   tags?: string[];
 }) {
+  const url = abs(`/blog/${input.slug}`);
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -51,8 +128,12 @@ export function articleSchema(input: {
     description: input.description,
     datePublished: input.date,
     dateModified: input.date,
-    url: new URL(`/blog/${input.slug}`, siteConfig.url).toString(),
-    author: { "@type": "Person", name: siteConfig.name, url: siteConfig.url },
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    image: abs(`/blog/${input.slug}/opengraph-image`),
+    inLanguage: "en",
+    author: personRef,
+    publisher: personRef,
     keywords: input.tags?.join(", "),
   };
 }
@@ -63,6 +144,8 @@ export function softwareSchema(input: {
   description: string;
   slug: string;
   category: string;
+  image?: string;
+  appUrl?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -70,8 +153,12 @@ export function softwareSchema(input: {
     name: input.name,
     description: input.description,
     applicationCategory: input.category,
-    url: new URL(`/work/${input.slug}`, siteConfig.url).toString(),
-    author: { "@type": "Person", name: siteConfig.name, url: siteConfig.url },
+    operatingSystem: "Web",
+    url: abs(`/work/${input.slug}`),
+    ...(input.appUrl ? { sameAs: input.appUrl } : {}),
+    ...(input.image ? { image: new URL(input.image, siteConfig.url).toString() } : {}),
+    author: personRef,
+    publisher: personRef,
   };
 }
 

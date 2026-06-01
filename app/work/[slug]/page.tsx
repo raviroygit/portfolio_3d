@@ -9,7 +9,7 @@ import { MonoLabel } from "@/components/ui/MonoLabel";
 import { getProject, getProjectSlugs, getAllProjects } from "@/content/work";
 import { getMedia } from "@/content/media";
 import { buildMetadata, siteConfig } from "@/lib/seo";
-import { softwareSchema, jsonLdScript } from "@/lib/jsonld";
+import { softwareSchema, breadcrumbSchema, jsonLdScript } from "@/lib/jsonld";
 
 export function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
@@ -25,13 +25,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return {};
-  const media = getMedia(slug);
+  // OG image comes from the colocated opengraph-image.tsx (branded 1200×630).
   return buildMetadata({
     title: project.name,
     description: project.tagline,
     path: `/work/${slug}`,
     type: "article",
-    images: media?.image ? [{ url: media.image }] : undefined,
   });
 }
 
@@ -75,7 +74,19 @@ export default async function CaseStudyPage({
             description: project.tagline,
             slug: project.slug,
             category: project.category,
+            image: media?.image ?? undefined,
+            appUrl: project.links.live ?? project.url,
           }),
+        )}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Work", path: "/work" },
+            { name: project.name, path: `/work/${project.slug}` },
+          ]),
         )}
       />
       <Container className="max-w-4xl">

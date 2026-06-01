@@ -6,10 +6,15 @@ import { InfrastructureShowcase } from "@/components/sections/InfrastructureShow
 import { SelectedWork } from "@/components/sections/SelectedWork";
 import { TechnicalExpertise } from "@/components/sections/TechnicalExpertise";
 import { ContactCta } from "@/components/sections/ContactCta";
+import { profilePageSchema, jsonLdScript } from "@/lib/jsonld";
 
 export default function Home() {
   return (
     <main id="main">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(profilePageSchema())}
+      />
       <Hero />
       <WhatIBuild />
       <FeaturedProducts />

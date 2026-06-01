@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { fontVariables } from "@/lib/fonts";
 import { siteConfig, buildMetadata } from "@/lib/seo";
@@ -18,6 +18,8 @@ export const metadata: Metadata = {
     default: siteConfig.title,
     template: `%s · ${siteConfig.name}`,
   },
+  applicationName: siteConfig.name,
+  category: "technology",
   keywords: [
     "AI Platform Engineer",
     "AI Infrastructure Architect",
@@ -25,10 +27,41 @@ export const metadata: Metadata = {
     "LLM Orchestration",
     "Multi-Tenant SaaS",
     "Voice AI",
+    "AI Agents",
+    "RAG",
+    "Next.js",
     "Ravi Roy",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
+  publisher: siteConfig.name,
+  manifest: "/manifest.webmanifest",
+  formatDetection: { telephone: false },
+  appleWebApp: {
+    capable: true,
+    title: siteConfig.name,
+    statusBarStyle: "black-translucent",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  // optional — set GOOGLE_SITE_VERIFICATION in the deploy env to enable GSC.
+  ...(process.env.GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
+    : {}),
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0d1117",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({

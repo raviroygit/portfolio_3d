@@ -8,12 +8,15 @@ export function SectionHeading({
   description,
   align = "left",
   className,
+  as: Heading = "h2",
 }: {
   eyebrow?: string;
   title: React.ReactNode;
   description?: React.ReactNode;
   align?: "left" | "center";
   className?: string;
+  /** heading level — pass "h1" when this is the page's primary heading */
+  as?: "h1" | "h2";
 }) {
   return (
     <div
@@ -24,9 +27,9 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? <MonoLabel>{eyebrow}</MonoLabel> : null}
-      <h2 className="text-balance font-display text-h2 font-semibold text-fg">
+      <Heading className="text-balance font-display text-h2 font-semibold text-fg">
         {title}
-      </h2>
+      </Heading>
       {description ? (
         <p
           className={cn(

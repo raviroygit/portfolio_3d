@@ -49,7 +49,10 @@ export function buildMetadata({
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      types: { "application/rss+xml": `${siteConfig.url}/feed.xml` },
+    },
     openGraph: {
       type,
       url,
@@ -57,6 +60,7 @@ export function buildMetadata({
       description,
       siteName: siteConfig.name,
       locale: siteConfig.locale,
+      ...(type === "article" ? { authors: [siteConfig.url] } : {}),
       ...(publishedTime ? { publishedTime } : {}),
       ...(tags ? { tags } : {}),
       ...(images ? { images } : {}),

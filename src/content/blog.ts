@@ -57,3 +57,12 @@ export function getPost(slug: string): Post | undefined {
 export function getPostSlugs(): string[] {
   return getAllPosts().map((p) => p.slug);
 }
+
+/** Raw Markdown body (frontmatter stripped) — used by /llms-full.txt. */
+export function getPostContent(slug: string): string {
+  const mdx = path.join(BLOG_DIR, `${slug}.mdx`);
+  const md = path.join(BLOG_DIR, `${slug}.md`);
+  const file = fs.existsSync(mdx) ? mdx : fs.existsSync(md) ? md : null;
+  if (!file) return "";
+  return matter(fs.readFileSync(file, "utf8")).content.trim();
+}

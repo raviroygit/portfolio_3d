@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Prose } from "@/components/ui/Prose";
 import { getPost, getPostSlugs } from "@/content/blog";
 import { buildMetadata } from "@/lib/seo";
-import { articleSchema, jsonLdScript } from "@/lib/jsonld";
+import { articleSchema, breadcrumbSchema, jsonLdScript } from "@/lib/jsonld";
 
 export function generateStaticParams() {
   return getPostSlugs().map((slug) => ({ slug }));
@@ -68,6 +68,16 @@ export default async function PostPage({
             date: frontmatter.date,
             tags: frontmatter.tags,
           }),
+        )}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Writing", path: "/blog" },
+            { name: frontmatter.title, path: `/blog/${slug}` },
+          ]),
         )}
       />
       <Container className="max-w-3xl">

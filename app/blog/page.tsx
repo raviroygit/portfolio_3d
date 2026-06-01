@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/motion/Reveal";
 import { getAllPosts } from "@/content/blog";
 import { buildMetadata } from "@/lib/seo";
+import { itemListSchema, jsonLdScript } from "@/lib/jsonld";
 
 export const metadata: Metadata = buildMetadata({
   title: "Writing",
@@ -28,8 +29,23 @@ export default function BlogPage() {
 
   return (
     <main id="main" className="pt-28 pb-24 sm:pt-36">
+      {posts.length > 0 ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLdScript(
+            itemListSchema({
+              name: "Writing",
+              items: posts.map((p) => ({
+                name: p.frontmatter.title,
+                path: `/blog/${p.slug}`,
+              })),
+            }),
+          )}
+        />
+      ) : null}
       <Container className="max-w-4xl">
         <SectionHeading
+          as="h1"
           eyebrow="writing"
           title="Notes on building AI infrastructure."
           description="Deep-dives on the systems I build — orchestration, agents, multi-tenancy, and the architecture decisions behind them."

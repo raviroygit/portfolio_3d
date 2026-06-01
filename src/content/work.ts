@@ -1,4 +1,5 @@
 import type { Project, Capability, SkillGroup, Experience } from "./types";
+import { getMedia } from "./media";
 
 /**
  * Real products with live URLs. Screenshots, logos, and brand colors are
@@ -312,6 +313,168 @@ export const projects: Project[] = [
       appStore: "https://apps.apple.com/us/app/evenlysplit-expense-khata/id6756101586",
     },
   },
+  {
+    slug: "healthcare-rag",
+    name: "HealthCare RAG",
+    category: "Healthcare AI",
+    group: "AI Platforms",
+    tier: "product",
+    accent: "cyan",
+    tagline:
+      "Automated, HIPAA-compliant health report generation with RAG over clinical data.",
+    role: "AI Engineer",
+    timeframe: "2024",
+    problem:
+      "Clinicians spend hours turning raw lab reports, imaging notes, and patient histories into readable summaries. HealthCare RAG automates report generation with retrieval-augmented generation over clinical data — context-rich, personalized, and privacy-compliant.",
+    approach: [
+      "Built a RAG pipeline orchestrated with LangChain for multi-step clinical workflows.",
+      "Used domain-specific medical embedding models (BioBERT, PubMedBERT) for accurate retrieval.",
+      "Parsed clinical data — lab reports, imaging notes, patient histories — into a searchable vector store.",
+      "Generated context-aware, per-patient summaries under HIPAA / GDPR data-privacy constraints.",
+    ],
+    architecture: [
+      "Retrieval-augmented generation with medical embeddings (BioBERT / PubMedBERT).",
+      "LangChain orchestration of multi-step retrieval → reasoning → summary.",
+      "HIPAA / GDPR-compliant data handling with real-time analytics on system performance.",
+    ],
+    stack: ["LangChain", "RAG", "BioBERT", "PubMedBERT", "Pinecone", "Node.js", "TypeScript"],
+    links: {},
+  },
+  {
+    slug: "askvoya",
+    name: "AskVoya",
+    category: "AI Travel Assistant",
+    group: "AI Platforms",
+    url: "https://askvoya.com",
+    tier: "product",
+    accent: "signal",
+    tagline:
+      "An AI travel-assistant chatbot on WhatsApp — answering up to 90% of traveler questions, 24/7.",
+    role: "AI Engineer & Full-Stack Developer",
+    timeframe: "2024 — present",
+    problem:
+      "Tour operators and travel agencies field the same traveler questions around the clock, in many languages. Voya is an AI travel-assistant chatbot on WhatsApp that handles up to 90% of those questions automatically — itineraries, bookings, recommendations — so agencies deliver 24/7 personalized support without scaling headcount.",
+    approach: [
+      "Built a WhatsApp-native conversational assistant with multilingual support out of the box.",
+      "Added itinerary management — real-time updates, changes, and location-specific recommendations.",
+      "Answered contextual queries on hotels, flights, weather, dining, activities, and distances.",
+      "Layered in marketing templates, review collection, and emergency/crisis assistance.",
+    ],
+    architecture: [
+      "WhatsApp messaging integration over a context-aware conversational AI runtime.",
+      "Multilingual NLU with itinerary and booking context per traveler.",
+      "Built on the shared orchestration layer for model routing and fallback.",
+    ],
+    metrics: [
+      { label: "Questions handled", value: "Up to 90%" },
+      { label: "Availability", value: "24/7" },
+      { label: "Channel", value: "WhatsApp" },
+    ],
+    stack: ["Next.js", "Node.js", "TypeScript", "OpenAI", "WhatsApp API", "PostgreSQL"],
+    links: { live: "https://askvoya.com" },
+  },
+  {
+    slug: "whatsapp-ai-bot",
+    name: "WhatsApp AI Bot",
+    category: "AI Assistant",
+    group: "SaaS Products",
+    tier: "product",
+    accent: "signal",
+    tagline:
+      "A smart WhatsApp bot that automates responses with document-grounded, multi-language AI.",
+    role: "AI Engineer & Full-Stack Developer",
+    timeframe: "2023",
+    problem:
+      "Teams field the same questions on events, travel, and documents over and over. This WhatsApp bot automates responses with context-aware AI — grounded in documents, with reminders, notifications, and integrations.",
+    approach: [
+      "Built document-based Q&A over PDFs, spreadsheets, and databases for instant answers.",
+      "Added event/travel notifications, flight tracking, and location recommendations (Google Maps).",
+      "Delivered a personalized, context-aware chatbot with multi-language support and custom reminders.",
+    ],
+    architecture: [
+      "Retrieval over documents + databases for grounded answers.",
+      "WhatsApp messaging integration with scheduled reminders and notifications.",
+      "Third-party API integrations (flights, maps) behind a conversational layer.",
+    ],
+    stack: ["Node.js", "TypeScript", "OpenAI", "RAG", "WhatsApp API", "MongoDB"],
+    links: {},
+  },
+  {
+    slug: "pawpal-ai",
+    name: "PawPal AI",
+    category: "Consumer AI",
+    group: "SaaS Products",
+    tier: "product",
+    accent: "cyan",
+    tagline:
+      "A smart pet companion — voice chat with breed avatars, AI image analysis & generation.",
+    role: "AI Engineer & Full-Stack Developer",
+    timeframe: "2023",
+    problem:
+      "Pet owners want quick, trustworthy guidance on breeds, health, and care. PawPal AI pairs interactive breed avatars with voice conversation and AI image analysis to make pet guidance hands-free and personal.",
+    approach: [
+      "Built voice-to-voice conversations with AI avatars of different dog breeds.",
+      "Added AI image analysis (health, breed, mood) and AI-generated pet portraits.",
+      "Gave breed-selection and care/training guidance from lifestyle and activity inputs.",
+    ],
+    architecture: [
+      "Voice pipeline + per-breed avatar personas for hands-free guidance.",
+      "Image analysis + generation pipeline for health, breed, and portrait features.",
+    ],
+    stack: ["React Native", "Expo", "Node.js", "TypeScript", "OpenAI"],
+    links: {},
+  },
+  {
+    slug: "3spay",
+    name: "3SPay",
+    category: "Fintech / POS",
+    group: "Enterprise Systems",
+    url: "https://3s-pay.com",
+    tier: "product",
+    accent: "signal",
+    tagline:
+      "A POS payment platform — secure card management, transaction processing & reporting.",
+    role: "Backend Engineer",
+    timeframe: "2022",
+    problem:
+      "POS operators need secure, reliable payment processing with clear reporting. 3SPay delivers card management, transaction processing, and user analytics on a secure, optimized backend.",
+    approach: [
+      "Built a secure, optimized backend for seamless payment processing.",
+      "Implemented card management, transaction processing, and user analytics/reporting.",
+      "Improved user management and operational efficiency for POS systems.",
+    ],
+    architecture: [
+      "Secure payment-processing backend with card management.",
+      "Transaction pipeline with analytics and reporting.",
+    ],
+    stack: ["Node.js", "Express", "TypeScript", "MongoDB"],
+    links: { live: "https://3s-pay.com" },
+  },
+  {
+    slug: "npm-packages",
+    name: "NPM Packages",
+    category: "Open Source",
+    group: "Enterprise Systems",
+    tier: "product",
+    accent: "cyan",
+    tagline:
+      "Published NPM packages for multi-platform efficiency — GPS, scanning, updates & sync.",
+    role: "Author & Maintainer",
+    timeframe: "2021 — 2023",
+    problem:
+      "Cross-platform apps repeatedly re-implement device features and sync. I authored reusable NPM packages so teams get GPS, scanning, auto-updates, and real-time sync as drop-in modules.",
+    approach: [
+      "Published GPS data integration for location-based functionality.",
+      "Built scanner / QR-code support to accelerate data capture.",
+      "Added Windows app update automation and real-time cross-platform data sync.",
+    ],
+    architecture: [
+      "Reusable, versioned NPM modules consumed across multiple apps.",
+      "Native-bridge integrations (GPS, scanner) with real-time sync.",
+    ],
+    stack: ["TypeScript", "JavaScript", "Node.js", "npm"],
+    links: {},
+  },
 ];
 
 export const projectGroups = [
@@ -379,19 +542,23 @@ export const capabilities: Capability[] = [
 export const skillGroups: SkillGroup[] = [
   {
     group: "AI & Infrastructure",
-    skills: ["LLM Infrastructure", "AI Orchestration", "Model Routing", "AI Agents", "Voice AI", "RAG / Memory", "Mastra", "OpenAI", "Pinecone"],
+    skills: ["LLM Infrastructure", "AI Orchestration", "Model Routing", "AI Agents", "Voice AI", "RAG / Memory", "LangChain", "Mastra", "OpenAI", "Google Gemini", "Ollama", "TensorFlow"],
   },
   {
     group: "Backend",
-    skills: ["Node.js", "NestJS", "Fastify", "Express", "Hono", "Bun", "TypeScript"],
+    skills: ["Node.js", "NestJS", "Fastify", "Express", "Hono", "Bun", "TypeScript", "GraphQL", "gRPC", "Keycloak"],
   },
   {
-    group: "Data & Platform",
-    skills: ["PostgreSQL", "MongoDB", "Redis", "Pinecone", "Firebase", "Drizzle"],
+    group: "Data & Vector",
+    skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Pinecone", "Chroma", "Firebase", "Drizzle", "Mongoose", "Sequelize"],
   },
   {
     group: "Frontend & Mobile",
-    skills: ["React", "Next.js", "React Native", "Expo", "Vue.js", "Ionic", "Three.js"],
+    skills: ["React", "Next.js", "React Native", "Expo", "Vue.js", "Ionic", "Cordova", "Three.js", "Tailwind CSS", "shadcn/ui"],
+  },
+  {
+    group: "Cloud & DevOps",
+    skills: ["AWS", "Google Cloud", "Docker", "Kubernetes", "Jenkins", "Vercel", "Railway", "Heroku", "CI/CD", "Firebase"],
   },
   {
     group: "Architecture",
@@ -401,25 +568,45 @@ export const skillGroups: SkillGroup[] = [
 
 export const experiences: Experience[] = [
   {
-    role: "Founding / Full-Stack & AI Platform Engineer",
-    company: "NextGen AI Dev",
+    role: "Freelance AI Platform & Full-Stack Engineer (Remote)",
+    company: "Independent — NextGen AI Dev",
     url: "https://nxtgenaidev.com",
-    date: "2022 — Present",
+    date: "2025 — Present",
     points: [
-      "Architected AI platforms, orchestration infrastructure, and multi-tenant SaaS — owning the stack from Postgres to LLM routing to web and mobile.",
+      "Design and ship production AI platforms, orchestration infrastructure, and multi-tenant SaaS for clients — remote, end to end, from Postgres to LLM routing to web and mobile.",
       "Built the AI orchestration backend routing 60+ providers with fallback and cost-aware selection.",
       "Built an org-based auth platform (RBAC, SSO, passwordless, secret vault, audit logs) every product delegates to.",
-      "Shipped AI, voice, consumer, and enterprise products (Elevence, Echo, VoAgents, HiHelloHR) on the shared platform.",
+      "Ship AI, voice, consumer, and enterprise products (Elevence, Echo, VoAgents, ClipCam, HiHelloHR) on the shared NextGen platform.",
     ],
   },
   {
-    role: "MERN Stack Developer",
-    company: "Ezycerts Solutions",
+    role: "Lead Software Engineer",
+    company: "Mapping Metrics (AI-Powered)",
+    date: "2024 — 2025",
+    points: [
+      "Led engineering on AI-powered products — owning architecture, delivery, and the AI integration layer.",
+      "Built RAG, agent, and voice-AI systems and the orchestration around them.",
+      "Mentored engineers and drove technical decisions across the stack.",
+    ],
+  },
+  {
+    role: "Senior Software Engineer",
+    company: "Dipole Tech Innovation (OPC) Pvt. Ltd.",
+    date: "2021 — 2024",
+    points: [
+      "Delivered 6+ production projects spanning web, mobile, and backend.",
+      "Architected scalable Node.js services and React / React Native clients end to end.",
+      "Owned features from data model to deployment across multiple client products.",
+    ],
+  },
+  {
+    role: "Software Engineer",
+    company: "Ezycerts Solutions Pvt. Ltd.",
     url: "https://www.ezycerts.com/",
-    date: "2021 — 2022",
+    date: "2018 — 2021",
     points: [
       "Built and maintained production web applications across the MERN stack.",
-      "Collaborated cross-functionally to ship features end to end.",
+      "Collaborated cross-functionally to ship 5+ products end to end.",
       "Implemented responsive, cross-browser interfaces and reviewed code for quality.",
     ],
   },
@@ -427,7 +614,13 @@ export const experiences: Experience[] = [
 
 // ---- selectors -----------------------------------------------------------
 
-export const getAllProjects = () => projects;
+/** Projects with a real screenshot/poster rank ahead of image-less ones.
+ *  Array.prototype.sort is stable, so relative order is otherwise preserved. */
+const hasImage = (p: Project) => Boolean(getMedia(p.slug)?.image);
+const rankByMedia = (list: Project[]) =>
+  [...list].sort((a, b) => Number(hasImage(b)) - Number(hasImage(a)));
+
+export const getAllProjects = () => rankByMedia(projects);
 
 export const getFeaturedProjects = () =>
   projects
@@ -435,7 +628,7 @@ export const getFeaturedProjects = () =>
     .sort((a, b) => (a.featured ?? 99) - (b.featured ?? 99));
 
 export const getProjectsByGroup = (group: string) =>
-  projects.filter((p) => p.group === group);
+  rankByMedia(projects.filter((p) => p.group === group));
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
 

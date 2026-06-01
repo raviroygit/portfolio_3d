@@ -163,5 +163,50 @@
       "height": 800
     },
     "logo": "/assets/projects/evenlysplit-logo.png"
+  },
+  {
+    "slug": "askvoya",
+    "url": "https://askvoya.com",
+    "finalUrl": "https://askvoya.com/",
+    "title": "Voya &#8211; Your AI- tour assistance chatbots for tour managers and travellers",
+    "description": null,
+    "themeColor": null,
+    "dominant": "#f8f8f8",
+    "image": "/assets/projects/askvoya-v2.webp",
+    "dims": {
+      "width": 1280,
+      "height": 855
+    },
+    "logo": "/assets/projects/askvoya-logo.png"
+  },
+  {
+    "slug": "3spay",
+    "url": "https://3s-pay.com",
+    "finalUrl": "https://3s-pay.com/",
+    "title": "Terminaux de paiement en Algérie – TPE sécurisé et performant",
+    "description": null,
+    "themeColor": null,
+    "dominant": "#080808",
+    "image": "/assets/projects/3spay.webp",
+    "dims": {
+      "width": 1280,
+      "height": 800
+    },
+    "logo": "/assets/projects/3spay-logo.png"
+  },
+  {
+    "slug": "whatsapp-ai-bot",
+    "url": null,
+    "finalUrl": null,
+    "title": "WhatsApp AI Bot",
+    "description": "A smart WhatsApp bot that automates responses with document-grounded, multilingual AI.",
+    "themeColor": "#128C7E",
+    "dominant": "#128C7E",
+    "image": "/assets/projects/whatsapp-ai-bot-v2.webp",
+    "dims": {
+      "width": 1280,
+      "height": 800
+    },
+    "logo": "/assets/projects/whatsapp-ai-bot-logo-v2.png"
   }
 ]

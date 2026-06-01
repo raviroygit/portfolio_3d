@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/seo";
 const proof = [
   { value: "60+", label: "AI providers routed" },
   { value: "10+", label: "Products shipped" },
-  { value: "5+ yrs", label: "Full-stack" },
+  { value: "7+ yrs", label: "Full-stack" },
   { value: "Multi-tenant", label: "By default" },
 ];
 

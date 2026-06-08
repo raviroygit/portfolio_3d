@@ -14,6 +14,10 @@ import { BackgroundStarfield } from "@/components/three/BackgroundStarfield";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   ...buildMetadata(),
+  // Explicit brand-logo signal for external tools that scrape the site for a
+  // logo (e.g. the blog-automation cover image). Points at the real logo mark
+  // raster — NOT the headshot icon/apple-icon — so scrapers grab the brand mark.
+  other: { "og:logo": `${siteConfig.url}/assets/brand-logo.png` },
   title: {
     default: siteConfig.title,
     template: `%s · ${siteConfig.name}`,

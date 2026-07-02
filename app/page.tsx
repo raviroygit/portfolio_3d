@@ -5,6 +5,7 @@ import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
 import { InfrastructureShowcase } from "@/components/sections/InfrastructureShowcase";
 import { SelectedWork } from "@/components/sections/SelectedWork";
 import { TechnicalExpertise } from "@/components/sections/TechnicalExpertise";
+import { LatestWriting } from "@/components/sections/LatestWriting";
 import { ContactCta } from "@/components/sections/ContactCta";
 import { profilePageSchema, jsonLdScript } from "@/lib/jsonld";
 
@@ -22,6 +23,7 @@ export default function Home() {
       <InfrastructureShowcase />
       <SelectedWork />
       <TechnicalExpertise />
+      <LatestWriting />
       <ContactCta />
     </main>
   );

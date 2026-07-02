@@ -34,6 +34,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ revalidated: false, error: "unauthorized" }, { status: 401 });
   }
 
+  revalidatePath("/"); // home-page "Writing" rail
   revalidatePath("/blog");
   revalidatePath("/blog/[slug]", "page");
   revalidatePath("/sitemap.xml");

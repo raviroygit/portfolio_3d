@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
@@ -60,19 +61,32 @@ export default async function BlogPage() {
             posts.map((post, i) => (
               <Reveal key={post.slug} delay={i * 0.05}>
                 <Link href={`/blog/${post.slug}`} className="block">
-                  <Card interactive className="p-6 sm:p-7">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <Badge tone="signal">{post.frontmatter.category}</Badge>
-                      <span className="font-mono text-xs text-fg-subtle">
-                        {formatDate(post.frontmatter.date)} · {post.readingTime}
-                      </span>
+                  <Card interactive className="overflow-hidden">
+                    {post.coverImageUrl ? (
+                      <div className="relative aspect-[16/9] overflow-hidden border-b border-border bg-bg">
+                        <Image
+                          src={post.coverImageUrl}
+                          alt={post.frontmatter.title}
+                          fill
+                          sizes="(max-width: 896px) 100vw, 896px"
+                          className="object-cover transition-transform duration-700 ease-fluid group-hover:scale-[1.03]"
+                        />
+                      </div>
+                    ) : null}
+                    <div className="p-6 sm:p-7">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <Badge tone="signal">{post.frontmatter.category}</Badge>
+                        <span className="font-mono text-xs text-fg-subtle">
+                          {formatDate(post.frontmatter.date)} · {post.readingTime}
+                        </span>
+                      </div>
+                      <h2 className="mt-4 font-display text-xl font-semibold text-fg transition-colors group-hover:text-signal">
+                        {post.frontmatter.title}
+                      </h2>
+                      <p className="mt-2 text-pretty text-sm leading-relaxed text-fg-muted">
+                        {post.frontmatter.description}
+                      </p>
                     </div>
-                    <h2 className="mt-4 font-display text-xl font-semibold text-fg transition-colors group-hover:text-signal">
-                      {post.frontmatter.title}
-                    </h2>
-                    <p className="mt-2 text-pretty text-sm leading-relaxed text-fg-muted">
-                      {post.frontmatter.description}
-                    </p>
                   </Card>
                 </Link>
               </Reveal>

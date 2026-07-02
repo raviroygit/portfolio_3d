@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
@@ -96,6 +97,19 @@ export default async function PostPage({
         >
           ← Writing
         </Link>
+
+        {post.coverImageUrl ? (
+          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-card border border-border bg-bg">
+            <Image
+              src={post.coverImageUrl}
+              alt={frontmatter.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="object-cover"
+              priority
+            />
+          </div>
+        ) : null}
 
         <header className="mt-8 border-b border-border pb-8">
           <div className="flex flex-wrap items-center gap-3">

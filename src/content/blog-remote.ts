@@ -167,9 +167,21 @@ function ensureConfig(): void {
 export async function getRemotePosts(): Promise<Post[]> {
   ensureConfig();
   if (!BLG_API_KEY || !BLG_ORG_ID) return [];
-  const params = new URLSearchParams({ status: "published", page: "1", limit: "100" });
-  const data = await getJson<ListResponse>(`/api/v1/blogs/posts?${params.toString()}`);
-  return (data?.items ?? [])
+  const LIMIT = 100;
+  const MAX_PAGES = 50; // safety backstop (5000 posts)
+  const rows: CmsPostRow[] = [];
+  for (let page = 1; page <= MAX_PAGES; page++) {
+    const params = new URLSearchParams({
+      status: "published",
+      page: String(page),
+      limit: String(LIMIT),
+    });
+    const data = await getJson<ListResponse>(`/api/v1/blogs/posts?${params.toString()}`);
+    const items = data?.items ?? [];
+    rows.push(...items);
+    if (items.length < LIMIT) break; // last page
+  }
+  return rows
     .filter(isPublishable)
     .map(toPost)
     .sort(

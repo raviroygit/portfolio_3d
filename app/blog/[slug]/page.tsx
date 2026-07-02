@@ -8,11 +8,13 @@ import { getPost, getPostSlugs } from "@/content/blog";
 import { buildMetadata } from "@/lib/seo";
 import { articleSchema, breadcrumbSchema, jsonLdScript } from "@/lib/jsonld";
 
-export function generateStaticParams() {
-  return getPostSlugs().map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  return (await getPostSlugs()).map((slug) => ({ slug }));
 }
 
-export const dynamicParams = false;
+// Remote CMS posts can be published after build — allow rendering unknown slugs.
+export const dynamicParams = true;
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,
@@ -20,7 +22,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = await getPost(slug);
   if (!post) return {};
   return buildMetadata({
     title: post.frontmatter.title,
@@ -46,13 +48,20 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = await getPost(slug);
   if (!post) notFound();
 
-  // compiled MDX (rendered via @next/mdx + plugins from next.config.ts)
-  const { default: Content } = await import(
-    `../../../content/blog/${slug}.mdx`
-  );
+  // Local posts render via compiled MDX; remote CMS posts render their HTML body.
+  let body: React.ReactNode;
+  if (post.source === "local") {
+    // compiled MDX (rendered via @next/mdx + plugins from next.config.ts)
+    const { default: Content } = await import(
+      `../../../content/blog/${slug}.mdx`
+    );
+    body = <Content />;
+  } else {
+    body = <div dangerouslySetInnerHTML={{ __html: post.contentHtml ?? "" }} />;
+  }
 
   const { frontmatter } = post;
 
@@ -103,9 +112,7 @@ export default async function PostPage({
           </p>
         </header>
 
-        <Prose className="mt-10">
-          <Content />
-        </Prose>
+        <Prose className="mt-10">{body}</Prose>
 
         <div className="mt-12 flex flex-wrap gap-2 border-t border-border pt-8">
           {frontmatter.tags.map((t) => (

@@ -24,8 +24,8 @@ function formatDate(iso: string) {
   });
 }
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export default async function BlogPage() {
+  const posts = await getAllPosts();
 
   return (
     <main id="main" className="pt-28 pb-24 sm:pt-36">

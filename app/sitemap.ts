@@ -4,7 +4,7 @@ import { getAllProjects } from "@/content/work";
 import { getAllPosts } from "@/content/blog";
 import { getMedia } from "@/content/media";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;
   const now = new Date();
   const abs = (path: string) => `${base}${path}`;
@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  const blogRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+  const blogRoutes: MetadataRoute.Sitemap = (await getAllPosts()).map((post) => ({
     url: abs(`/blog/${post.slug}`),
     lastModified: new Date(post.frontmatter.date),
     changeFrequency: "yearly",

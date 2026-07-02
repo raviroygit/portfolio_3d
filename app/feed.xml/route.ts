@@ -10,9 +10,9 @@ const esc = (s: string) =>
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 
-export function GET() {
+export async function GET() {
   const abs = (path: string) => new URL(path, siteConfig.url).toString();
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   const lastBuild = posts[0]?.frontmatter.date
     ? new Date(posts[0].frontmatter.date).toUTCString()
     : new Date(0).toUTCString();

@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
+import { getRemotePost, getRemotePosts, getRemotePostContent } from "./blog-remote";
 
 export type PostFrontmatter = {
   title: string;
@@ -16,6 +17,12 @@ export type Post = {
   slug: string;
   frontmatter: PostFrontmatter;
   readingTime: string;
+  /** Where the post comes from: local MDX file vs. the remote CMS. */
+  source: "local" | "remote";
+  /** Pre-rendered HTML body (remote posts only; local posts render via MDX import). */
+  contentHtml?: string;
+  /** Optional cover image URL (remote posts). */
+  coverImageUrl?: string | null;
 };
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
@@ -28,25 +35,21 @@ function readPostFile(fileName: string): Post {
     slug,
     frontmatter: data as PostFrontmatter,
     readingTime: readingTime(content).text,
+    source: "local",
   };
 }
 
-/** All published posts, newest first. */
-export function getAllPosts(): Post[] {
+/** Local MDX posts, newest first (drafts excluded). */
+function getLocalPosts(): Post[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
   return fs
     .readdirSync(BLOG_DIR)
     .filter((f) => /\.mdx?$/.test(f))
     .map(readPostFile)
-    .filter((p) => !p.frontmatter.draft)
-    .sort(
-      (a, b) =>
-        new Date(b.frontmatter.date).getTime() -
-        new Date(a.frontmatter.date).getTime(),
-    );
+    .filter((p) => !p.frontmatter.draft);
 }
 
-export function getPost(slug: string): Post | undefined {
+function getLocalPost(slug: string): Post | undefined {
   const mdx = path.join(BLOG_DIR, `${slug}.mdx`);
   const md = path.join(BLOG_DIR, `${slug}.md`);
   if (fs.existsSync(mdx)) return readPostFile(`${slug}.mdx`);
@@ -54,15 +57,35 @@ export function getPost(slug: string): Post | undefined {
   return undefined;
 }
 
-export function getPostSlugs(): string[] {
-  return getAllPosts().map((p) => p.slug);
+/** All published posts (local MDX + remote CMS), newest first. */
+export async function getAllPosts(): Promise<Post[]> {
+  const [local, remote] = await Promise.all([
+    Promise.resolve(getLocalPosts()),
+    getRemotePosts(),
+  ]);
+  return [...local, ...remote].sort(
+    (a, b) =>
+      new Date(b.frontmatter.date).getTime() -
+      new Date(a.frontmatter.date).getTime(),
+  );
 }
 
-/** Raw Markdown body (frontmatter stripped) — used by /llms-full.txt. */
-export function getPostContent(slug: string): string {
+/** Fetch a single post by slug — local MDX takes precedence over remote. */
+export async function getPost(slug: string): Promise<Post | undefined> {
+  const local = getLocalPost(slug);
+  if (local) return local;
+  return (await getRemotePost(slug)) ?? undefined;
+}
+
+export async function getPostSlugs(): Promise<string[]> {
+  return (await getAllPosts()).map((p) => p.slug);
+}
+
+/** Plain-text body (frontmatter/HTML stripped) — used by /llms-full.txt. */
+export async function getPostContent(slug: string): Promise<string> {
   const mdx = path.join(BLOG_DIR, `${slug}.mdx`);
   const md = path.join(BLOG_DIR, `${slug}.md`);
   const file = fs.existsSync(mdx) ? mdx : fs.existsSync(md) ? md : null;
-  if (!file) return "";
-  return matter(fs.readFileSync(file, "utf8")).content.trim();
+  if (file) return matter(fs.readFileSync(file, "utf8")).content.trim();
+  return getRemotePostContent(slug);
 }

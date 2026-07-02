@@ -10,8 +10,8 @@ const abs = (path: string) => new URL(path, siteConfig.url).toString();
  * following the https://llmstxt.org convention. Generated from content data so
  * it never drifts from the live pages.
  */
-export function buildLlmsTxt(): string {
-  const posts = getAllPosts();
+export async function buildLlmsTxt(): Promise<string> {
+  const posts = await getAllPosts();
   const lines: string[] = [];
 
   lines.push(`# ${siteConfig.name}`);
@@ -108,8 +108,8 @@ function projectDetail(p: Project): string {
 }
 
 /** /llms-full.txt — the index plus full text of every project and blog post. */
-export function buildLlmsFullTxt(): string {
-  const lines: string[] = [buildLlmsTxt()];
+export async function buildLlmsFullTxt(): Promise<string> {
+  const lines: string[] = [await buildLlmsTxt()];
 
   lines.push("");
   lines.push("---");
@@ -120,7 +120,7 @@ export function buildLlmsFullTxt(): string {
     lines.push(projectDetail(p));
   }
 
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   if (posts.length > 0) {
     lines.push("---");
     lines.push("");
@@ -133,7 +133,7 @@ export function buildLlmsFullTxt(): string {
       lines.push(`- Published: ${post.frontmatter.date}`);
       lines.push(`- Tags: ${post.frontmatter.tags.join(", ")}`);
       lines.push("");
-      lines.push(getPostContent(post.slug));
+      lines.push(await getPostContent(post.slug));
       lines.push("");
     }
   }

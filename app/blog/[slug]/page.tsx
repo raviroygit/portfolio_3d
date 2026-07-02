@@ -98,20 +98,7 @@ export default async function PostPage({
           ← Writing
         </Link>
 
-        {post.coverImageUrl ? (
-          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-card border border-border bg-bg">
-            <Image
-              src={post.coverImageUrl}
-              alt={frontmatter.title}
-              fill
-              sizes="(max-width: 768px) 100vw, 768px"
-              className="object-cover"
-              priority
-            />
-          </div>
-        ) : null}
-
-        <header className="mt-8 border-b border-border pb-8">
+        <header className="mt-8">
           <div className="flex flex-wrap items-center gap-3">
             <Badge tone="signal">{frontmatter.category}</Badge>
             <span className="font-mono text-xs text-fg-subtle">
@@ -126,7 +113,20 @@ export default async function PostPage({
           </p>
         </header>
 
-        <Prose className="mt-10">{body}</Prose>
+        {post.coverImageUrl ? (
+          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-card border border-border bg-bg">
+            <Image
+              src={post.coverImageUrl}
+              alt={frontmatter.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="object-cover"
+              priority
+            />
+          </div>
+        ) : null}
+
+        <Prose className="mt-10 border-t border-border pt-10">{body}</Prose>
 
         <div className="mt-12 flex flex-wrap gap-2 border-t border-border pt-8">
           {frontmatter.tags.map((t) => (
